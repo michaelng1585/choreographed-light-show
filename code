@@ -1,0 +1,135 @@
+int red = 2;
+int orange = 3;
+int yellow = 4;
+int green = 5;
+int blue = 6;
+int count = 0;
+int number = 0;
+int collapse = 255;
+int formation = 0;
+
+void setup(){
+  pinMode(red, OUTPUT);
+  pinMode(orange, OUTPUT);
+  pinMode(yellow, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(blue, OUTPUT);
+}
+
+void loop(){
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(yellow, 255);
+  analogWrite(green, 0);
+  analogWrite(blue, 0);
+  delay(600);
+  
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(yellow, 0);
+  analogWrite(green, 125);
+  analogWrite(blue, 125);
+  delay(600);
+  
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(yellow, 255);
+  analogWrite(green, 255);
+  analogWrite(blue, 255);
+  delay(600);
+  
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(yellow, 0);
+  analogWrite(green, 125);
+  analogWrite(blue, 125);
+  delay(600);
+  
+  analogWrite(red, 255);
+  analogWrite(orange, 255);
+  analogWrite(yellow, 255);
+  analogWrite(green, 0);
+  analogWrite(blue, 0);
+  delay(600);
+  
+  analogWrite(red, 0);
+  analogWrite(orange, 0);
+  analogWrite(yellow, 0);
+  analogWrite(green, 0);
+  analogWrite(blue, 0);
+  
+  while(count <= 20){
+    if(digitalRead(red) == LOW){
+      for(int i = 6; i >= 2; i--){
+        digitalWrite(i, HIGH);
+        delay(150);
+        digitalWrite(i, LOW);
+        delay(150);
+        count = count + 1;
+      }
+      if(count > 20){
+        digitalWrite(red, HIGH);
+        digitalWrite(orange, LOW);
+        digitalWrite(yellow, HIGH);
+        digitalWrite(green, LOW);
+        digitalWrite(blue, HIGH);
+        delay(250);
+      }
+    }
+  }
+  digitalWrite(red, LOW);
+  digitalWrite(orange, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(green, HIGH);
+  digitalWrite(blue, LOW);
+  delay(250);
+  
+  digitalWrite(red, HIGH);
+  digitalWrite(orange, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(green, LOW);
+  digitalWrite(blue, LOW);
+  delay(250);
+  
+  digitalWrite(red, HIGH);
+  digitalWrite(orange, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(green, LOW);
+  digitalWrite(blue, HIGH);
+  delay(250);
+  
+  digitalWrite(red, LOW);
+  digitalWrite(orange, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(green, LOW);
+  digitalWrite(blue, HIGH);
+  delay(250);
+  
+  digitalWrite(red, LOW);
+  digitalWrite(orange, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(green, HIGH);
+  digitalWrite(blue, LOW);
+  delay(250);  
+  
+  while(number <= 20){
+    collapse = collapse - 25;
+    formation = formation + 25;
+    analogWrite(red, formation);
+    analogWrite(orange, collapse);
+    analogWrite(yellow, formation);
+    analogWrite(green, collapse);
+    analogWrite(blue, formation);
+    delay(250);
+    number = number + 1;
+  }
+  while(number > 20){
+    digitalWrite(red, LOW);
+    digitalWrite(orange, LOW);
+    digitalWrite(yellow, LOW);
+    digitalWrite(green, LOW);
+    digitalWrite(blue, LOW);
+    delay(150);
+  }
+}
+
